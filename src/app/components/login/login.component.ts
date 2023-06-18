@@ -39,14 +39,13 @@ export class LoginComponent {
     //make http post request
     this.http.post("https://hcm-test-b53ed02fdf2d.herokuapp.com/login", this.loginFb.value).subscribe((results: any) => {
     // console.log(results.data)
-    
-    //get token values
-    const parts = results.token.split('.');
-    // Decode the base64-encoded payload
-    const payload = JSON.parse(atob(parts[1]))
-
 
       if(results.status === true){
+        //get token values
+        const parts = results.token.split('.');
+        // Decode the base64-encoded payload
+        const payload = JSON.parse(atob(parts[1]))
+
         // set local storage vals
         localStorage.setItem('loggedIn', 'true')
         localStorage.setItem('jwt', results.token)
